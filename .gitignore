@@ -1,5 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
 .idea
-target
-*.jar
-*.class
-*.iml
+.gitignore
+.idea/compiler.xml
+.idea/misc.xml
+.idea/workspace.xml
+DariaKashinskaia.iml
+.target
+src/
