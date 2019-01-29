@@ -12,11 +12,14 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+// TODO Pay attention to Code Convention, try to reformat your code via IDEA(find out hotkeys)
 public class HomePageTest {
 
     @Test
     public void homePageTest(){
-
+        // TODO this call essential for WIN OC.
+        // TODO What kind of OC do you use ?
+        System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         //1. Open test site by URL
         WebDriver driver = new ChromeDriver(); //Browser - Chrome
         driver.manage().window().maximize();   //Window - maximized
@@ -55,6 +58,8 @@ public class HomePageTest {
         assertEquals(heardSection.get(1).getAttribute("innerText"), "CONTACT FORM");
 
         //"SERVICE"
+        // TODO test failed here. What is the reason of that ?
+        // TODO Should be fixed.
         assertEquals(heardSection.get(2).getAttribute("innerText"), "SERVICE");
 
         //"METALS & COLORS"
