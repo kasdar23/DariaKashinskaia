@@ -1,10 +1,10 @@
 package hw1;
-//Kashinskaia 28_01_2019
+//Kashinskaia 30_01_2019
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import static org.testng.Assert.assertTrue;
 public class HomePageTest {
 
     @Test
-    public void homePageTest(){
+    public void homePageTest() {
         // TODO this call essential for WIN OC.
         // TODO What kind of OC do you use ?
         System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
@@ -47,30 +47,30 @@ public class HomePageTest {
         List<WebElement> heardSection
                 = driver.findElements(By.cssSelector("ul.uui-navigation.nav.navbar-nav.m-l8 > li > a"));
 
-        for (WebElement item: heardSection) {
-           assertTrue(item.isDisplayed());
+        for (WebElement item : heardSection) {
+            assertTrue(item.isDisplayed());
         }
 
         //"HOME"
-        assertEquals(heardSection.get(0).getAttribute("innerText"), "HOME");
+        assertEquals(heardSection.get(0).getText(), "HOME");
 
         //"CONTACT FORM"
-        assertEquals(heardSection.get(1).getAttribute("innerText"), "CONTACT FORM");
+        assertEquals(heardSection.get(1).getText(), "CONTACT FORM");
 
         //"SERVICE"
         // TODO test failed here. What is the reason of that ?
         // TODO Should be fixed.
-        assertEquals(heardSection.get(2).getAttribute("innerText"), "SERVICE");
+        assertEquals(heardSection.get(2).getText(), "SERVICE");
 
         //"METALS & COLORS"
-        assertEquals(heardSection.get(3).getAttribute("innerText"), "METALS & COLORS");
+        assertEquals(heardSection.get(3).getText(), "METALS & COLORS");
 
         //7.Assert that there are 4 images on the Index Page
         // and they are displayed
         List<WebElement> benefitIcons
                 = driver.findElements(By.cssSelector("div.benefit-icon > span"));
-        assertEquals(benefitIcons.size(),4);
-        for (WebElement icon: benefitIcons) {
+        assertEquals(benefitIcons.size(), 4);
+        for (WebElement icon : benefitIcons) {
             assertTrue(icon.isDisplayed());
         }
 
@@ -80,12 +80,12 @@ public class HomePageTest {
                 = driver.findElements(By.cssSelector("div.benefit > span"));
         assertEquals(benefitText.get(0).getText(), "To include good practices\n"
                 + "and ideas from successful\n" + "EPAM project");
-        assertEquals(benefitText.get(1).getText(), "To be flexible and\n"+"customizable");
+        assertEquals(benefitText.get(1).getText(), "To be flexible and\n" + "customizable");
         assertEquals(benefitText.get(2).getText(), "To be multiplatform");
         assertEquals(benefitText.get(3).getText(), "Already have good base\n"
-                +"(about 20 internal and\n"
-                +"some external projects),\n"
-                +"wish to get more…");
+                + "(about 20 internal and\n"
+                + "some external projects),\n"
+                + "wish to get more…");
 
         //9. Assert a text of the main headers
         WebElement mainTitle = driver.findElement(By.cssSelector("h3.main-title"));
@@ -93,7 +93,7 @@ public class HomePageTest {
         WebElement mainText = driver.findElement(By.cssSelector("p.main-txt"));
         assertEquals(mainText.getText(),
                 "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA"
-                        +" ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS"+
+                        + " ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS" +
                         " AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         //10. Assert that there is the iframe in the center of page

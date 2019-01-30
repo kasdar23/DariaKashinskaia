@@ -1,5 +1,6 @@
 package hw1;
-//Kashinskaia 28_01_2019
+//Kashinskaia 30_01_2019
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,16 +10,15 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class HomePageTestSoftAssert {
     SoftAssert softAssert = new SoftAssert();
 
     @Test
-    public void homePageTestSoftAssert(){
+    public void homePageTestSoftAssert() {
 
         //1. Open test site by URL
+        System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         WebDriver driver = new ChromeDriver(); //Browser - Chrome
         driver.manage().window().maximize();   //Window - maximized
         driver.navigate().to("https://epam.github.io/JDI/index.html");
@@ -45,28 +45,28 @@ public class HomePageTestSoftAssert {
         List<WebElement> heardSection
                 = driver.findElements(By.cssSelector("ul.uui-navigation.nav.navbar-nav.m-l8 > li > a"));
 
-        for (WebElement item: heardSection) {
-           softAssert.assertTrue(item.isDisplayed());
+        for (WebElement item : heardSection) {
+            softAssert.assertTrue(item.isDisplayed());
         }
 
         //"HOME"
-        softAssert.assertEquals(heardSection.get(0).getAttribute("innerText"), "HOME");
+        softAssert.assertEquals(heardSection.get(0).getText(), "HOME");
 
         //"CONTACT FORM"
-        softAssert.assertEquals(heardSection.get(1).getAttribute("innerText"), "CONTACT FORM");
+        softAssert.assertEquals(heardSection.get(1).getText(), "CONTACT FORM");
 
         //"SERVICE"
-        softAssert.assertEquals(heardSection.get(2).getAttribute("innerText"), "SERVICE");
+        softAssert.assertEquals(heardSection.get(2).getText(), "SERVICE");
 
         //"METALS & COLORS"
-        softAssert.assertEquals(heardSection.get(3).getAttribute("innerText"), "METALS & COLORS");
+        softAssert.assertEquals(heardSection.get(3).getText(), "METALS & COLORS");
 
         //7.Assert that there are 4 images on the Index Page
         // and they are displayed
         List<WebElement> benefitIcons
                 = driver.findElements(By.cssSelector("div.benefit-icon > span"));
-        softAssert.assertEquals(benefitIcons.size(),4);
-        for (WebElement icon: benefitIcons) {
+        softAssert.assertEquals(benefitIcons.size(), 4);
+        for (WebElement icon : benefitIcons) {
             softAssert.assertTrue(icon.isDisplayed());
         }
 
@@ -76,12 +76,12 @@ public class HomePageTestSoftAssert {
                 = driver.findElements(By.cssSelector("div.benefit > span"));
         softAssert.assertEquals(benefitText.get(0).getText(), "To include good practices\n"
                 + "and ideas from successful\n" + "EPAM project");
-        softAssert.assertEquals(benefitText.get(1).getText(), "To be flexible and\n"+"customizable");
+        softAssert.assertEquals(benefitText.get(1).getText(), "To be flexible and\n" + "customizable");
         softAssert.assertEquals(benefitText.get(2).getText(), "To be multiplatform");
         softAssert.assertEquals(benefitText.get(3).getText(), "Already have good base\n"
-                +"(about 20 internal and\n"
-                +"some external projects),\n"
-                +"wish to get more…");
+                + "(about 20 internal and\n"
+                + "some external projects),\n"
+                + "wish to get more…");
 
         //9. Assert a text of the main headers
         WebElement mainTitle = driver.findElement(By.cssSelector("h3.main-title"));
@@ -89,7 +89,7 @@ public class HomePageTestSoftAssert {
         WebElement mainText = driver.findElement(By.cssSelector("p.main-txt"));
         softAssert.assertEquals(mainText.getText(),
                 "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA"
-                        +" ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS"+
+                        + " ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS" +
                         " AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         //10. Assert that there is the iframe in the center of page

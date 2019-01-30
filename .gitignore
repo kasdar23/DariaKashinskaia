@@ -4,8 +4,9 @@
 .idea/compiler.xml
 .idea/misc.xml
 .idea/workspace.xml
-DariaKashinskaia.iml
+*.iml
 # TODO You can improve it, wont work for me
-.target
+target
+
 
 
