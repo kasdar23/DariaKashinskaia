@@ -8,8 +8,8 @@
         </run>
     </groups>
 
+    <!--TODO This might be better with packages-->
     <test name="RegressionTests">
-
         <classes>
             <class name="hw2.ex2.SmokeTests"/>
             <class name="hw2.ex2.RegressionTests"/>
