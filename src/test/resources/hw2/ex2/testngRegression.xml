@@ -10,12 +10,9 @@
 
     <!--TODO This might be better with packages-->
     <test name="RegressionTests">
-        <classes>
-            <class name="hw2.ex2.SmokeTests"/>
-            <class name="hw2.ex2.RegressionTests"/>
-            <class name="hw2.ex2.SmokeOrRegressionTests"/>
-            <class name="hw2.ex2.SmokeAndRegresisonTests"/>
-        </classes>
+        <packages>
+            <package name="hw2.ex2"/>
+        </packages>
 
     </test>
 

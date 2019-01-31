@@ -1,6 +1,7 @@
 package hw2.ex1;
 
 import base.SeleniumBase;
+import base.hw2.SeleniumBaseHw2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,21 +19,20 @@ public class TextCheck extends SeleniumBase {
     @DataProvider(parallel = true)
     public Object[][] expectedText() {
         return new Object[][]{
-                {"To include good practices\n"
-                        + "and ideas from successful\n" + "EPAM project", 0},
-                {"To be flexible and\n" + "customizable", 1},
-                {"To be multiplatform", 2},
-                {"Already have good base\n"
+                {0, "To include good practices\n"
+                        + "and ideas from successful\n" + "EPAM project"},
+                {1, "To be flexible and\n" + "customizable"},
+                {2, "To be multiplatform"},
+                {3, "Already have good base\n"
                         + "(about 20 internal and\n"
                         + "some external projects),\n"
-                        + "wish to get more…", 3}
+                        + "wish to get more…"}
         };
     }
 
     @Test(dataProvider = "expectedText")
-    public void textCheck(String text, int i) {
+    public void textCheck(int i, String text) {
         //1. Open test site by URL
-        System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         WebDriver driver = new ChromeDriver(); //Browser - Chrome
         driver.manage().window().maximize();   //Window - maximized
         driver.navigate().to("https://epam.github.io/JDI/index.html");
