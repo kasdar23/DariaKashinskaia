@@ -13,6 +13,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class HomePageTestWithAnnotations extends SeleniumBaseHw2 {
+    // TODO You should not live the comments like this.
     //annotation @BeforeSuite use in src/main/java/base/hw2/SeleniumBaseHw2
     //annotation @AfterSuite use in src/main/java/base/hw2/SeleniumBaseHw2
     private WebDriver driver;
