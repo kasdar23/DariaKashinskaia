@@ -17,19 +17,29 @@ import static enums.MainHeader.MAIN_HEADER;
 import static enums.PageTitles.HOME_PAGE;
 import static enums.SubHeader.SUB_HEADER;
 
+// TODO In general everything OK, but you smashed Data to really small pieces
+// TODO Maybe it will be easier if you merge several of it into one Enum
+
 public class HomePageObjectTest extends SeleniumBase {
+    // TODO Take a look on hw2 nad testNg hooks.
+    // TODO This should bi in one of the @before methods
     private WebDriver driver = new ChromeDriver();
     private HomePage homePage = PageFactory.initElements(driver, HomePage.class);
 
+    // TODO Basically, you should pass Enum into the method instead of String
+    // TODO This help us to avoid unexpected usage of our methods by others users
     @Test
     public void homePageTest() {
         //1. Open test site by URL
+        // TODO Take a look on HomePage(WebDriver driver) {...} constructor
+        // TODO it can be used in order to pass WD instance to PO once.
         homePage.open(driver, HOME_PAGE_LINK.link);
 
         //2. Assert Browser title
         homePage.checkBrowserTitle(driver, HOME_PAGE.pageTitle);
 
         //3. Perform login
+        // TODO Why don't you pass the whole user into this method ?
         homePage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);
 
         //4. Assert User name in the left-top side of screen that user is loggined
@@ -42,6 +52,7 @@ public class HomePageObjectTest extends SeleniumBase {
         // and they have proper texts
         homePage.checkHeardSectionDisplaed();
 
+        // TODO This should be encapsulate into PO, trying to use cycle.
         //"HOME"
         homePage.checkHeardSectionText(HOME.count, HOME.expectedText);
 
@@ -53,6 +64,7 @@ public class HomePageObjectTest extends SeleniumBase {
 
         //"METALS & COLORS"
         homePage.checkHeardSectionText(METALS_COLORS.count, METALS_COLORS.expectedText);
+        // !TODO
 
         //7.Assert that there are 4 images on the Index Page
         // and they are displayed
@@ -62,6 +74,8 @@ public class HomePageObjectTest extends SeleniumBase {
 
         //8. Assert that there are 4 texts on the Index Page under icons
         // and they have proper text
+        // TODO You should encapsulate this into PO
+        // TODO This will be better with cycle
         homePage.checkNumberTextUnderIcons(4);
         homePage.checkTextUnderIcons(BENEFIT_TEXT1.count, BENEFIT_TEXT1.text);
         homePage.checkTextUnderIcons(BENEFIT_TEXT2.count, BENEFIT_TEXT2.text);
@@ -72,7 +86,7 @@ public class HomePageObjectTest extends SeleniumBase {
         homePage.checkMainHeader(MAIN_HEADER.mainTitle, MAIN_HEADER.mainTitleText);
 
         //10. Assert that there is the iframe in the center of page
-        homePage.iframeDisplaed();
+        homePage.iframeDisplayed();
 
         //11. Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         homePage.switchToIframe(driver);
@@ -93,6 +107,7 @@ public class HomePageObjectTest extends SeleniumBase {
         //16. Assert that there is Footer
         homePage.footerSectionDisplaed();
 
+        // TODO Take a look on HW2 ex 2
         //17. Close Browser
         homePage.close(driver);
 

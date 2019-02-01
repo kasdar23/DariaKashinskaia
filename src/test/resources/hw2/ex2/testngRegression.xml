@@ -8,7 +8,6 @@
         </run>
     </groups>
 
-    <!--TODO This might be better with packages-->
     <test name="RegressionTests">
         <packages>
             <package name="hw2.ex2"/>

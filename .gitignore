@@ -1,9 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
-# TODO Really ?) You should NOT ignore .gitignore =)
-# TODO Basically, you can ignore just .idea folder
-# TODO It is not make a sense to ignore this file one by one
-# !TODO
 *.iml
 target
 

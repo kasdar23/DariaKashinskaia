@@ -112,7 +112,7 @@ public class HomePage {
         assertEquals(mainTitleText.getText(), expectedText);
     }
 
-    public void iframeDisplaed() {
+    public void iframeDisplayed() {
         assertTrue(iframe.isDisplayed());
     }
 

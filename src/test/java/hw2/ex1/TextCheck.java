@@ -15,7 +15,6 @@ import static org.testng.Assert.assertEquals;
 
 public class TextCheck extends SeleniumBase {
 
-    // TODO In general it is doesn't matter but KEY(0-4 in this case) should be first {1, "benefit"}
     @DataProvider(parallel = true)
     public Object[][] expectedText() {
         return new Object[][]{
