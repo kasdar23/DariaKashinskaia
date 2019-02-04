@@ -1,16 +1,28 @@
 package pageObjects;
 
+import enums.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
+import static enums.Titles.MAIN_HEADER_TEXT;
+import static enums.Titles.MAIN_HEADER_TITLE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class HomePage {
+
+    public WebDriver driver;
+
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     @FindBy(css = "[id='user-icon']")
     private WebElement profileButton;
@@ -28,7 +40,7 @@ public class HomePage {
     private WebElement userName;
 
     @FindBy(css = "ul.uui-navigation.nav.navbar-nav.m-l8 > li > a")
-    private List<WebElement> heardSection;
+    private List<WebElement> headerSection;
 
     @FindBy(css = "div.benefit-icon > span")
     private List<WebElement> benefitIcons;
@@ -57,59 +69,72 @@ public class HomePage {
     @FindBy(css = "footer")
     WebElement footer;
 
-    public void open(WebDriver driver, String link) {
+    public void open(Links links) {
         driver.manage().window().maximize();   //Window - maximized
-        driver.navigate().to(link);
+        driver.navigate().to(links.link);
     }
 
-    ;
-
-    public void login(String name, String pass) {
+    public void login(DataUsers user) {
         profileButton.click();
-        login.sendKeys(name);
-        password.sendKeys(pass);
+        login.sendKeys(user.login);
+        password.sendKeys(user.password);
         submit.click();
+        assertEquals(userName.getText(), user.userName);
     }
 
-    public void checkBrowserTitle(WebDriver driver, String expectedTitle) {
-        assertEquals(driver.getTitle(), expectedTitle);
+    public void checkBrowserTitle(Titles expectedTitle) {
+        assertEquals(driver.getTitle(), expectedTitle.title);
     }
 
-    public void checkUserName(String expectedUserName) {
-        assertEquals(userName.getText(), expectedUserName);
-    }
 
-    public void checkHeardSectionDisplaed() {
-        for (WebElement item : heardSection) {
+    public void checkHeaderSection() {
+        for (WebElement item : headerSection) {
             assertTrue(item.isDisplayed());
+        }
+        ArrayList<String> expectedHeaderSection = new ArrayList<>();
+        for (HeadSectionItems text :
+                HeadSectionItems.values()) {
+            expectedHeaderSection.add(text.expectedText);
+        }
+        Iterator<WebElement> headHeaderSection = headerSection.iterator();
+        Iterator<String> headExpectedHeaderSection = expectedHeaderSection.iterator();
+        while (headHeaderSection.hasNext() & headExpectedHeaderSection.hasNext()) {
+            assertEquals(headHeaderSection.next().getText(), headExpectedHeaderSection.next());
         }
     }
 
-    public void checkHeardSectionText(int itemNumber, String expectedText) {
-        assertEquals(heardSection.get(itemNumber).getText(), expectedText);
-    }
+    public void checkBenefitIcons(int expectedNumber) {
 
-    public void checkNumberBenefitIcons(int expectedNumber) {
         assertEquals(benefitIcons.size(), expectedNumber);
-    }
-
-    public void checkBenefitIconsDisplayed() {
         for (WebElement icon : benefitIcons) {
             assertTrue(icon.isDisplayed());
         }
     }
 
-    public void checkNumberTextUnderIcons(int expectedNumber) {
+    public void checkTextUnderIcons(int expectedNumber) {
+
         assertEquals(benefitText.size(), expectedNumber);
+
+        ArrayList<String> expectedText = new ArrayList<>();
+
+        for (BenefitText text : BenefitText.values()) {
+            expectedText.add(text.expectedText);
+        }
+
+        Iterator<WebElement> headBenefitIcons = benefitText.iterator();
+        Iterator<String> headExpectedText = expectedText.iterator();
+
+        while (headBenefitIcons.hasNext() & headExpectedText.hasNext()) {
+            assertEquals(headBenefitIcons.next().getText(), headExpectedText.next());
+        }
+
+
     }
 
-    public void checkTextUnderIcons(int itemNumber, String expectedText) {
-        assertEquals(benefitText.get(itemNumber).getText(), expectedText);
-    }
 
-    public void checkMainHeader(String expectedTitleText, String expectedText) {
-        assertEquals(mainTitle.getText(), expectedTitleText);
-        assertEquals(mainTitleText.getText(), expectedText);
+    public void checkMainHeader() {
+        assertEquals(mainTitle.getText(), MAIN_HEADER_TITLE.title);
+        assertEquals(mainTitleText.getText(), MAIN_HEADER_TEXT.title);
     }
 
     public void iframeDisplayed() {
@@ -128,12 +153,12 @@ public class HomePage {
         driver.switchTo().parentFrame();
     }
 
-    public void checkSubHeadText(String expectedText) {
-        assertEquals(subHeard.getText(), expectedText);
+    public void checkSubHeadText(Titles expectedTitle) {
+        assertEquals(subHeard.getText(), expectedTitle.title);
     }
 
-    public void checkJdiLink(String expectedLink) {
-        assertEquals(subHeard.getAttribute("href"), expectedLink);
+    public void checkJdiLink(Links expectedLink) {
+        assertEquals(subHeard.getAttribute("href"), expectedLink.link);
     }
 
     public void leftSectionDisplaed() {
@@ -144,9 +169,7 @@ public class HomePage {
         assertTrue(footer.isDisplayed());
     }
 
-    public void close(WebDriver driver) {
-        driver.close();
-    }
+
 }
 
 
