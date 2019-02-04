@@ -20,10 +20,6 @@ public class HomePage {
 
     public WebDriver driver;
 
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-    }
-
     @FindBy(css = "[id='user-icon']")
     private WebElement profileButton;
 
@@ -69,8 +65,12 @@ public class HomePage {
     @FindBy(css = "footer")
     WebElement footer;
 
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     public void open(Links links) {
-        driver.manage().window().maximize();   //Window - maximized
+        driver.manage().window().maximize();
         driver.navigate().to(links.link);
     }
 
@@ -87,15 +87,17 @@ public class HomePage {
     }
 
 
+    // TODO This method should be parametrised by List of enums(HeadSectionItems)
     public void checkHeaderSection() {
         for (WebElement item : headerSection) {
             assertTrue(item.isDisplayed());
         }
+        // TODO You can encapsulate this call in the HeadSectionItems enum
         ArrayList<String> expectedHeaderSection = new ArrayList<>();
-        for (HeadSectionItems text :
-                HeadSectionItems.values()) {
+        for (HeadSectionItems text : HeadSectionItems.values()) {
             expectedHeaderSection.add(text.expectedText);
         }
+        // TODO You can use simple for loop instead of while with iterators
         Iterator<WebElement> headHeaderSection = headerSection.iterator();
         Iterator<String> headExpectedHeaderSection = expectedHeaderSection.iterator();
         while (headHeaderSection.hasNext() & headExpectedHeaderSection.hasNext()) {
@@ -121,14 +123,13 @@ public class HomePage {
             expectedText.add(text.expectedText);
         }
 
+        // TODO Same story, it will be better with for loop
         Iterator<WebElement> headBenefitIcons = benefitText.iterator();
         Iterator<String> headExpectedText = expectedText.iterator();
 
         while (headBenefitIcons.hasNext() & headExpectedText.hasNext()) {
             assertEquals(headBenefitIcons.next().getText(), headExpectedText.next());
         }
-
-
     }
 
 

@@ -14,15 +14,10 @@ import pageObjects.HomePage;
 import static enums.DataUsers.PITER_CHAILOVSKII;
 import static enums.Links.HOME_PAGE_LINK;
 import static enums.Links.JDI_LINK;
-import static enums.Titles.HOME_PAGE;
+import static enums.Titles.HOME_PAGE_TITLE;
 import static enums.Titles.SUB_HEADER;
 
-// TODO In general everything OK, but you smashed Data to really small pieces
-// TODO Maybe it will be easier if you merge several of it into one Enum
-
 public class HomePageObjectTest extends SeleniumBase {
-    // TODO Take a look on hw2 and testNg hooks.
-    // TODO This should be in one of the @before methods
     private WebDriver driver;
     private HomePage homePage;
 
@@ -42,32 +37,24 @@ public class HomePageObjectTest extends SeleniumBase {
         homePage = PageFactory.initElements(driver, HomePage.class);
     }
 
-    // TODO Basically, you should pass Enum into the method instead of String
-    // TODO This help us to avoid unexpected usage of our methods by others users
     @Test
     public void homePageTest() {
         //1. Open test site by URL
-        // TODO Take a look on HomePage(WebDriver driver) {...} constructor
-        // TODO it can be used in order to pass WD instance to PO once.
         homePage.open(HOME_PAGE_LINK);
 
         //2. Assert Browser title
-        homePage.checkBrowserTitle(HOME_PAGE);
+        homePage.checkBrowserTitle(HOME_PAGE_TITLE);
 
         //3. Perform login
         //Assert User name in the left-top side of screen that user is loggined
-        // TODO Why don't you pass the whole user into this method ?
         homePage.login(PITER_CHAILOVSKII);
 
         //4. Assert Browser title
-        homePage.checkBrowserTitle(HOME_PAGE);
+        homePage.checkBrowserTitle(HOME_PAGE_TITLE);
 
         //5. Assert that there are 4 items on the header section are displayed
         // and they have proper texts
         homePage.checkHeaderSection();
-
-        // TODO This should be encapsulate into PO, trying to use cycle.
-        // !TODO
 
         //6.Assert that there are 4 images on the Index Page
         // and they are displayed
