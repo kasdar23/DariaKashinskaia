@@ -31,6 +31,7 @@ public class HomePage {
     @FindBy(css = "[id='user-name']")
     private WebElement userName;
 
+    // TODO This locator can be improved
     @FindBy(css = "ul.uui-navigation.nav.navbar-nav.m-l8 > li > a")
     private List<WebElement> headerSection;
 
@@ -83,22 +84,17 @@ public class HomePage {
     }
 
 
-    // TODO This method should be parametrised by List of enums(HeadSectionItems)
     public void checkHeaderSection(List<String> expectedHeadSectionItems) {
         for (WebElement item : headerSection) {
             assertTrue(item.isDisplayed());
         }
 
-        // TODO You can encapsulate this call in the HeadSectionItems enum
-        // TODO You can use simple for loop instead of while with iterators
         for (int i = 0; i < headerSection.size(); i++) {
             assertEquals(headerSection.get(i).getText(), expectedHeadSectionItems.get(i));
         }
-
     }
 
     public void checkBenefitIcons(int expectedNumber) {
-
         assertEquals(benefitIcons.size(), expectedNumber);
         for (WebElement icon : benefitIcons) {
             assertTrue(icon.isDisplayed());
@@ -106,10 +102,7 @@ public class HomePage {
     }
 
     public void checkTextUnderIcons(List<String> expectedText, int expectedNumber) {
-
         assertEquals(benefitText.size(), expectedNumber);
-
-        // TODO Same story, it will be better with for loop
         for (int i = 0; i < benefitText.size(); i++) {
             assertEquals(benefitText.get(i).getText(), expectedText.get(i));
         }
