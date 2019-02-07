@@ -1,5 +1,8 @@
 package enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum BenefitText {
     BENEFIT_TEXT1("To include good practices\n"
             + "and ideas from successful\n" + "EPAM project"),
@@ -15,4 +18,14 @@ public enum BenefitText {
     BenefitText(String expectedText) {
         this.expectedText = expectedText;
     }
+
+    static public List<String> getExpectedText() {
+        List<String> expectedText = new ArrayList<>();
+
+        for (BenefitText text : BenefitText.values()) {
+            expectedText.add(text.expectedText);
+        }
+        return expectedText;
+    }
+
 }

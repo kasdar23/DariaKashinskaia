@@ -1,6 +1,8 @@
 package hw3;
 
 import base.SeleniumBase;
+import enums.BenefitText;
+import enums.HeadSectionItems;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -12,6 +14,7 @@ import pageObjects.HomePage;
 
 
 import static enums.DataUsers.PITER_CHAILOVSKII;
+import static enums.HeadSectionItems.HOME;
 import static enums.Links.HOME_PAGE_LINK;
 import static enums.Links.JDI_LINK;
 import static enums.Titles.HOME_PAGE_TITLE;
@@ -54,7 +57,7 @@ public class HomePageObjectTest extends SeleniumBase {
 
         //5. Assert that there are 4 items on the header section are displayed
         // and they have proper texts
-        homePage.checkHeaderSection();
+        homePage.checkHeaderSection(HeadSectionItems.getExpectedHeaderSection());
 
         //6.Assert that there are 4 images on the Index Page
         // and they are displayed
@@ -64,7 +67,7 @@ public class HomePageObjectTest extends SeleniumBase {
         // and they have proper text
         // TODO You should encapsulate this into PO
         // TODO This will be better with cycle
-        homePage.checkTextUnderIcons(4);
+        homePage.checkTextUnderIcons(BenefitText.getExpectedText(), 4);
 
         //8. Assert a text of the main headers
         homePage.checkMainHeader();

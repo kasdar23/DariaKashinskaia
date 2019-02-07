@@ -1,14 +1,10 @@
 package pageObjects;
 
 import enums.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import static enums.Titles.MAIN_HEADER_TEXT;
@@ -88,21 +84,17 @@ public class HomePage {
 
 
     // TODO This method should be parametrised by List of enums(HeadSectionItems)
-    public void checkHeaderSection() {
+    public void checkHeaderSection(List<String> expectedHeadSectionItems) {
         for (WebElement item : headerSection) {
             assertTrue(item.isDisplayed());
         }
+
         // TODO You can encapsulate this call in the HeadSectionItems enum
-        ArrayList<String> expectedHeaderSection = new ArrayList<>();
-        for (HeadSectionItems text : HeadSectionItems.values()) {
-            expectedHeaderSection.add(text.expectedText);
-        }
         // TODO You can use simple for loop instead of while with iterators
-        Iterator<WebElement> headHeaderSection = headerSection.iterator();
-        Iterator<String> headExpectedHeaderSection = expectedHeaderSection.iterator();
-        while (headHeaderSection.hasNext() & headExpectedHeaderSection.hasNext()) {
-            assertEquals(headHeaderSection.next().getText(), headExpectedHeaderSection.next());
+        for (int i = 0; i < headerSection.size(); i++) {
+            assertEquals(headerSection.get(i).getText(), expectedHeadSectionItems.get(i));
         }
+
     }
 
     public void checkBenefitIcons(int expectedNumber) {
@@ -113,22 +105,13 @@ public class HomePage {
         }
     }
 
-    public void checkTextUnderIcons(int expectedNumber) {
+    public void checkTextUnderIcons(List<String> expectedText, int expectedNumber) {
 
         assertEquals(benefitText.size(), expectedNumber);
 
-        ArrayList<String> expectedText = new ArrayList<>();
-
-        for (BenefitText text : BenefitText.values()) {
-            expectedText.add(text.expectedText);
-        }
-
         // TODO Same story, it will be better with for loop
-        Iterator<WebElement> headBenefitIcons = benefitText.iterator();
-        Iterator<String> headExpectedText = expectedText.iterator();
-
-        while (headBenefitIcons.hasNext() & headExpectedText.hasNext()) {
-            assertEquals(headBenefitIcons.next().getText(), headExpectedText.next());
+        for (int i = 0; i < benefitText.size(); i++) {
+            assertEquals(benefitText.get(i).getText(), expectedText.get(i));
         }
     }
 
