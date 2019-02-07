@@ -65,8 +65,6 @@ public class HomePageObjectTest extends SeleniumBase {
 
         //7. Assert that there are 4 texts on the Index Page under icons
         // and they have proper text
-        // TODO You should encapsulate this into PO
-        // TODO This will be better with cycle
         homePage.checkTextUnderIcons(BenefitText.getExpectedText(), 4);
 
         //8. Assert a text of the main headers
@@ -93,9 +91,5 @@ public class HomePageObjectTest extends SeleniumBase {
 
         //15. Assert that there is Footer
         homePage.footerSectionDisplaed();
-
-        // TODO Take a look on HW2 ex 2
-
-
     }
 }
