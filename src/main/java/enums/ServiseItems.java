@@ -8,8 +8,8 @@ public enum ServiseItems {
     SERVISE_ITEMS_2("Dates"),
     SERVISE_ITEMS_3("Complex Table"),
     SERVISE_ITEMS_4("Simple Table"),
-    SERVISE_ITEMS_5("Table With Pages"),
-    SERVISE_ITEMS_6("Different Elements");
+    SERVISE_ITEMS_5("Table with pages"),
+    SERVISE_ITEMS_6("Different elements");
 
     public String expectedText;
 
@@ -17,7 +17,7 @@ public enum ServiseItems {
         this.expectedText = expectedText;
     }
 
-    public static List<String> getServiseItems() {
+    public static List<String> getServiseItemsUp() {
         List<String> expectedItemsText = new ArrayList<>();
         for (ServiseItems item :
                 ServiseItems.values()) {
@@ -25,4 +25,13 @@ public enum ServiseItems {
         }
         return expectedItemsText;
     }
+    public static List<String> getServiseItems() {
+        List<String> expectedItemsText = new ArrayList<>();
+        for (ServiseItems item :
+                ServiseItems.values()) {
+            expectedItemsText.add(item.expectedText);
+        }
+        return expectedItemsText;
+    }
+
 }

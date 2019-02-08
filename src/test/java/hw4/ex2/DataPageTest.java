@@ -3,7 +3,7 @@ package hw4.ex2;
 import base.SelenideBase;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObjects.HomePageSelenide;
+import pageObjects.hw4.ex2.HomePageSelenide;
 
 import static enums.DataUsers.PITER_CHAILOVSKII;
 import static enums.Links.HOME_PAGE_LINK;
@@ -34,19 +34,30 @@ public class DataPageTest extends SelenideBase {
 
         //5. Using drag-and-drop set Range sliders.
         // left sliders - the most left position, right slider - the most rigth position
-        //Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        homePageSelenide.moveLeftSlider(0, 100);
+        homePageSelenide.moveSliders(0, 100);
 
-        //6. Using drag-and-drop set Range sliders. left sliders - the most left position,
+        //6. Assert that for "From" and "To" sliders there are logs rows with corresponding values
+        homePageSelenide.checkRowsLog(0,100);
+
+        //7. Using drag-and-drop set Range sliders. left sliders - the most left position,
         // right slider - the most left position.
-        homePageSelenide.moveLeftSlider(0, 0);
+        homePageSelenide.moveSliders(0, 0);
 
-        //7. Using drag-and-drop set Range sliders. left sliders - the most rigth position,
+        //8. Assert that for "From" and "To" sliders there are logs rows with corresponding values
+        homePageSelenide.checkRowsLog(0,0);
+
+        //9. Using drag-and-drop set Range sliders. left sliders - the most rigth position,
         // right slider - the most rigth position.
-        homePageSelenide.moveLeftSlider(100, 100);
+        homePageSelenide.moveSliders(100, 100);
 
-        //8. Using drag-and-drop set Range sliders. left sliders - the most rigth position,
+        //10. Assert that for "From" and "To" sliders there are logs rows with corresponding values
+        homePageSelenide.checkRowsLog(100,100);
+
+        //11. Using drag-and-drop set Range sliders. left sliders - the most rigth position,
         //right slider - the most rigth position.
-        homePageSelenide.moveLeftSlider(30, 70);
+        homePageSelenide.moveSliders(30, 70);
+
+        //12. Assert that for "From" and "To" sliders there are logs rows with corresponding values
+        homePageSelenide.checkRowsLog(30,70);
     }
 }
