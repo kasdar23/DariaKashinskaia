@@ -1,5 +1,6 @@
 package pageObjects;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.interactions.Actions;
 import enums.DataUsers;
@@ -16,8 +17,15 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+// TODO It is completely prohibited to store all elements in one certain PO class.
+// TODO PO is LOGICAL page, you have to separate it in several classes.
+// TODO This page is NOT home page !
 public class HomePageSelenide {
 
+    // TODO You have to use Selenide conditions instead of testNg assertions
+
+    // TODO This is crucial to use annotation @FindBy.
+    // TODO The name of the elements should be shorter.
     SelenideElement profileButton = $("[id='user-icon']");
     SelenideElement login = $("[id='name']");
     SelenideElement password = $("[id='password']");
@@ -91,19 +99,16 @@ public class HomePageSelenide {
 
     public void checkInterfaceDifferentElementsPage() {
         assertEquals(checkBoxesDifferentElements.size(), 4);
-        for (SelenideElement item :
-                checkBoxesDifferentElements) {
+        for (SelenideElement item : checkBoxesDifferentElements) {
             assertTrue(item.isDisplayed());
         }
         assertEquals(radiosDifferentElements.size(), 4);
-        for (SelenideElement item :
-                radiosDifferentElements) {
+        for (SelenideElement item : radiosDifferentElements) {
             assertTrue(item.isDisplayed());
         }
         assertTrue(dropdownDifferentElements.isDisplayed());
         assertEquals(buttonsPageDifferentElements.size(), 2);
-        for (SelenideElement item :
-                buttonsPageDifferentElements) {
+        for (SelenideElement item : buttonsPageDifferentElements) {
             assertTrue(item.isDisplayed());
         }
     }
@@ -118,6 +123,7 @@ public class HomePageSelenide {
 
     public void selectChekBox(Titles chekBoxTitle) {
 
+        // TODO Take a look on IDEA warning
         for (int i = 0; i < checkBoxesDifferentElements.size(); i++) {
             if (checkBoxesDifferentElements.get(i).getText().equalsIgnoreCase(chekBoxTitle.title)) {
                 checkBoxesDifferentElements.get(i).click();
@@ -134,6 +140,7 @@ public class HomePageSelenide {
     }
 
     public void selectRadioButton(Titles radioButtonTitle) {
+        // TODO Take a look on IDEA warning
         for (int i = 0; i < radiosDifferentElements.size(); i++) {
             if (radiosDifferentElements.get(i).getText().equalsIgnoreCase(radioButtonTitle.title)) {
                 radiosDifferentElements.get(i).click();
@@ -143,6 +150,7 @@ public class HomePageSelenide {
     }
 
     public void selectDropDown(Titles dropDownTitle) {
+        // TODO Take a look on IDEA warning
         for (int i = 0; i < dropDownDifferentElements.size(); i++) {
             if (dropDownDifferentElements.get(i).getText().equalsIgnoreCase(dropDownTitle.title)) {
                 dropdownDifferentElements.click();
@@ -153,15 +161,14 @@ public class HomePageSelenide {
     }
 
     public void unselectedCheckBox(Titles chekBoxTitle) {
-
+        // TODO Take a look on IDEA warning
         for (int i = 0; i < checkBoxesDifferentElements.size(); i++) {
             if (checkBoxesDifferentElements.get(i).getText().equalsIgnoreCase(chekBoxTitle.title)) {
                 checkBoxesDifferentElements.get(i).click();
             }
         }
 
-        for (SelenideElement item :
-                logRows) {
+        for (SelenideElement item : logRows) {
             assertTrue(item.isDisplayed());
         }
 
@@ -169,13 +176,15 @@ public class HomePageSelenide {
         assertTrue(logRows.get(0).getText().contains(chekBoxTitle.title + ": condition changed to false"));
     }
 
+    // TODO It is not really good idea to mix PO Action and verification !
     public void moveLeftSlider(Integer fromValue, Integer toValue) {
 
         Integer sliderTrackLength = sliderTrack.getSize().getWidth();
         Integer sliderTrackX = sliderTrack.getLocation().getX();
-        Integer sliderWieght = slider.get(1).getSize().getWidth() / 2;
-        Integer leftSliderStartLocationPixel = slider.get(0).getLocation().getX() + sliderWieght;
-        Integer rightSliderStartLocationPixel = slider.get(1).getLocation().getX() + sliderWieght;
+        Integer sliderWidth = slider.get(1).getSize().getWidth() / 2;
+        // TODO Quite long variable name
+        Integer leftSliderStartLocationPixel = slider.get(0).getLocation().getX() + sliderWidth;
+        Integer rightSliderStartLocationPixel = slider.get(1).getLocation().getX() + sliderWidth;
 
         Integer offsetLeftSlider = convertPercentToPixel(fromValue, sliderTrackLength) + sliderTrackX - leftSliderStartLocationPixel;
         new Actions(getWebDriver()).dragAndDropBy(slider.get(0), offsetLeftSlider, 0).build().perform();
@@ -188,7 +197,9 @@ public class HomePageSelenide {
     }
 
     public Integer convertPercentToPixel(Integer percentValue, Integer sliderLength) {
-        Integer pixelValue = (int) Math.ceil(percentValue * sliderLength / 100);
+        // TODO Take a look on IDEA warning
+        // TODO (int) 100 != (float) 100.0 Your test failed because of this accuracy flaw.
+        Integer pixelValue = (int) Math.ceil(percentValue * sliderLength / 100.0);
         return pixelValue;
     }
 

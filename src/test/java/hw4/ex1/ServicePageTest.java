@@ -10,6 +10,7 @@ import static enums.DataUsers.PITER_CHAILOVSKII;
 import static enums.Links.HOME_PAGE_LINK;
 import static enums.Titles.*;
 
+// TODO Browser should be in fullscreen mode.
 public class ServicePageTest extends SelenideBase {
 
     private HomePageSelenide homePageSelenide;
