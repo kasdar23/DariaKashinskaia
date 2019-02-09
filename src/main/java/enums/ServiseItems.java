@@ -8,8 +8,10 @@ public enum ServiseItems {
     SERVISE_ITEMS_2("Dates"),
     SERVISE_ITEMS_3("Complex Table"),
     SERVISE_ITEMS_4("Simple Table"),
-    SERVISE_ITEMS_5("Table with pages"),
-    SERVISE_ITEMS_6("Different elements");
+    SERVISE_ITEMS_5("User Table"),
+    SERVISE_ITEMS_6("Table with pages"),
+    SERVISE_ITEMS_7("Different elements"),
+    SERVISE_ITEMS_8("Performance");
 
     public String expectedText;
 
