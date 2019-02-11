@@ -7,36 +7,33 @@ import org.openqa.selenium.support.FindBy;
 
 import com.codeborne.selenide.Condition;
 
-// TODO It is completely prohibited to store all elements in one certain PO class.
-// TODO PO is LOGICAL page, you have to separate it in several classes.
-// TODO This page is NOT home page !
 public class DifferentElementsPage {
-
-    // TODO You have to use Selenide conditions instead of testNg assertions
-
-    // TODO This is crucial to use annotation @FindBy.
-    // TODO The name of the elements should be shorter.
-
-
     @FindBy(css = ".m-l8 .dropdown-toggle")
     private SelenideElement heardService;
+
     @FindBy(css = ".m-l8 .dropdown-menu [href = 'different-elements.html']")
     private SelenideElement differentElements;
-    @FindBy(css = ".label-checkbox >input")
+
+    @FindBy(css = ".label-checkbox > input")
     private ElementsCollection natureElements;
+
     @FindBy(css = ".label-radio")
     private ElementsCollection material;
+
     @FindBy(css = ".colors")
     private SelenideElement color;
+
     @FindBy(css = "option")
     private ElementsCollection dropDownItems;
+
     @FindBy(css = ".main-content-hg .uui-button")
     private ElementsCollection buttons;
+
     @FindBy(css = ".right-fix-panel")
     private SelenideElement rightSection;
+
     @FindBy(css = ".panel-body-list.logs > li")
     private ElementsCollection logRows;
-
 
     public void goToDifferentElementsPage() {
         heardService.click();
@@ -64,14 +61,11 @@ public class DifferentElementsPage {
     }
 
     public void selectNatureElement(Titles natureElement) {
-
-        // TODO Take a look on IDEA warning
         for (SelenideElement item : natureElements.exclude(Condition.attribute("checked"))) {
             if (item.parent().text().equalsIgnoreCase(natureElement.title)) {
                 item.click();
             }
         }
-
     }
 
     public void checkLogElements(Titles titles, boolean expectedStatus) {
@@ -84,7 +78,7 @@ public class DifferentElementsPage {
     }
 
     public void selectMaterials(Titles materials) {
-        // TODO Take a look on IDEA warning
+        // TODO material.find(Condition.text(materials.title)).click();
         for (SelenideElement item : material) {
             if (item.text().equalsIgnoreCase(materials.title)) {
                 item.click();
@@ -97,9 +91,8 @@ public class DifferentElementsPage {
     }
 
     public void selectColor(Titles dropDownTitle) {
-        // TODO Take a look on IDEA warning
-        for (SelenideElement item :
-                dropDownItems) {
+        // TODO dropDownItems.find(Condition.text(dropDownTitle.title)).click();
+        for (SelenideElement item : dropDownItems) {
             if (item.text().equalsIgnoreCase(dropDownTitle.title)) {
                 item.click();
             }
@@ -114,13 +107,6 @@ public class DifferentElementsPage {
                 item.click();
             }
         }
-
-
-        //natureElements.findBy(Condition.attribute("checked")).parent().shouldHave(Condition.text("Water")).click();
-
     }
-
-
 }
-
 
