@@ -1,5 +1,6 @@
 package enums;
 
+// TODO This enum can be splitted on NatureElements, Colors, Metals, etc.
 public enum Titles {
     HOME_PAGE_TITLE("Home Page"),
     MAIN_HEADER_TITLE("EPAM FRAMEWORK WISHES…"),

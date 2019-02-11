@@ -4,8 +4,7 @@ import base.SelenideBase;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObjects.DataPage;
-import pageObjects.DifferentElementsPage;
+import pageObjects.DatesPage;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -15,7 +14,7 @@ import static enums.Links.HOME_PAGE_LINK;
 import static enums.Titles.HOME_PAGE_TITLE;
 
 public class DataPageTest extends SelenideBase {
-    private DataPage dataPage;
+    private DatesPage dataPage;
     private HomePageSelenide homePageSelenide;
 
     @BeforeClass
@@ -25,7 +24,7 @@ public class DataPageTest extends SelenideBase {
 
     @BeforeMethod
     public void beforeMethod() {
-        dataPage = page(DataPage.class);
+        dataPage = page(DatesPage.class);
         homePageSelenide = page(HomePageSelenide.class);
     }
 

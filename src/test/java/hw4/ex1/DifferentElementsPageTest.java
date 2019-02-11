@@ -18,7 +18,6 @@ import static enums.DataUsers.PITER_CHAILOVSKII;
 import static enums.Links.HOME_PAGE_LINK;
 import static enums.Titles.*;
 
-// TODO Browser should be in fullscreen mode.
 public class DifferentElementsPageTest extends SelenideBase {
 
     private DifferentElementsPage differentElementsPage;
@@ -26,6 +25,7 @@ public class DifferentElementsPageTest extends SelenideBase {
 
     @BeforeClass
     public void beforeClass() {
+        // TODO This should be stored as constant or as a enum...
         open("https://epam.github.io/JDI/index.html");
     }
 
