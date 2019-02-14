@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestNG Suite" parallel="methods" thread-count="3">
+
+    <test name="SmokeTests">
+        <packages>
+            <package name="hw5"/>
+        </packages>
+    </test>
+
+</suite>
