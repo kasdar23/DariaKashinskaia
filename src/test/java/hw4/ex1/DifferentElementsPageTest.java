@@ -2,20 +2,20 @@ package hw4.ex1;
 
 import base.SelenideBase;
 import enums.ServiseItems;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageObjects.HomePageSelenide;
 import pageObjects.DifferentElementsPage;
 
-import static com.codeborne.selenide.Selenide.getWebDriverLogs;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.ColorsAndMaterials.SELEN;
+import static enums.ColorsAndMaterials.YELLOW;
 import static enums.DataUsers.PITER_CHAILOVSKII;
 import static enums.Links.HOME_PAGE_LINK;
+import static enums.NatureElements.WATER;
+import static enums.NatureElements.WIND;
 import static enums.Titles.*;
 
 public class DifferentElementsPageTest extends SelenideBase {
@@ -26,7 +26,7 @@ public class DifferentElementsPageTest extends SelenideBase {
     @BeforeClass
     public void beforeClass() {
         // TODO This should be stored as constant or as a enum...
-        open("https://epam.github.io/JDI/index.html");
+        open(HOME_PAGE_LINK.link);
     }
 
 
@@ -68,36 +68,36 @@ public class DifferentElementsPageTest extends SelenideBase {
         homePageSelenide.checkLeftSection();
 
         //10. Select checkboxes 
-        differentElementsPage.selectNatureElement(CHECK_BOX_WATER);
-        differentElementsPage.selectNatureElement(CHECK_BOX_WIND);
+        differentElementsPage.selectNatureElement(WATER);
+        differentElementsPage.selectNatureElement(WIND);
 
         //11. Assert that for each checkbox there is an individual log row
         // and value is corresponded to the status of checkbox.
-        differentElementsPage.checkLogElements(CHECK_BOX_WATER, true);
-        differentElementsPage.checkLogElements(CHECK_BOX_WIND, true);
+        differentElementsPage.checkLogElements(WATER, true);
+        differentElementsPage.checkLogElements(WIND, true);
 
         //12. Select radio
-        differentElementsPage.selectMaterials(RADIO_BUTTON_SELEN);
+        differentElementsPage.selectMaterials(SELEN);
 
         //13. Assert that for radiobutton there is a log row
         // and value is corresponded to the status of radiobutton
-        differentElementsPage.checkLog(RADIO_BUTTON_SELEN);
+        differentElementsPage.checkLog(SELEN);
 
         //14. Select in dropdown
-        differentElementsPage.selectColor(DROP_DOWN_YELLOW);
+        differentElementsPage.selectColor(YELLOW);
 
         //15. Assert that for dropdown there is a log row
         // and value is corresponded to the selected value.
-        differentElementsPage.checkLog(DROP_DOWN_YELLOW);
+        differentElementsPage.checkLog(YELLOW);
 
         //16.Unselect and assert checkboxes 
-        differentElementsPage.unselectNatureElement(CHECK_BOX_WATER);
-        differentElementsPage.unselectNatureElement(CHECK_BOX_WIND);
+        differentElementsPage.unselectNatureElement(WATER);
+        differentElementsPage.unselectNatureElement(WIND);
 
         //17. Assert that for each checkbox there is an individual log row
         // and value is corresponded to the status of checkbox.
-        differentElementsPage.checkLogElements(CHECK_BOX_WATER, false);
-        differentElementsPage.checkLogElements(CHECK_BOX_WIND, false);
+        differentElementsPage.checkLogElements(WATER, false);
+        differentElementsPage.checkLogElements(WIND, false);
     }
 
 }

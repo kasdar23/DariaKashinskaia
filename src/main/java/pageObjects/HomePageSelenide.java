@@ -7,6 +7,7 @@ import com.codeborne.selenide.SelenideElement;
 import enums.DataUsers;
 import enums.Links;
 import enums.Titles;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -27,34 +28,45 @@ public class HomePageSelenide {
 
     @FindBy(css = "[id='user-icon']")
     private SelenideElement profileButton;
+
     @FindBy(css = "[id='name']")
     private SelenideElement login;
+
     @FindBy(css = "[id='password']")
     private SelenideElement password;
+
     @FindBy(css = "[id='login-button']")
     private SelenideElement submit;
+
     @FindBy(css = "[id='user-name']")
     private SelenideElement userName;
+
     @FindBy(css = ".m-l8 .dropdown-toggle")
     private SelenideElement heardService;
+
     @FindBy(css = "ul.dropdown-menu>li>a")
     private ElementsCollection heardServiceItems;
+
     @FindBy(css = ".sidebar-menu .menu-title")
     private SelenideElement leftService;
+
     @FindBy(css = ".sidebar-menu .menu-title .sub>li>a")
     private ElementsCollection leftServiceItems;
+
     @FindBy(css = ".sidebar-menu")
     private SelenideElement leftSection;
 
-
+    @Step("Open test site by URL")
     public void openPage(Links links) {
         open(links.link);
     }
 
+    @Step("Assert Browser title")
     public void checkBrowserTitle(Titles expectedTitle) {
         assertEquals(getWebDriver().getTitle(), expectedTitle.title);
     }
 
+    @Step("Login")
     public void login(DataUsers user) {
         profileButton.click();
         login.sendKeys(user.login);
@@ -63,18 +75,27 @@ public class HomePageSelenide {
         userName.shouldBe(Condition.exactText(user.userName));
     }
 
+    @Step("Check Header")
     public void checkHeaderServise(List<String> expectedText) {
         heardService.click();
         heardServiceItems.shouldHave(CollectionCondition.texts(expectedText));
     }
 
+    @Step("Check Left Section")
+    public void checkLeftSection() {
+        leftSection.shouldBe(Condition.visible);
+    }
+
+    @Step("Check Left Section Items")
     public void checkLeftServise(List<String> expectedText) {
         leftService.click();
         leftServiceItems.excludeWith(Condition.empty).shouldHave(CollectionCondition.texts(expectedText));
     }
 
-    public void checkLeftSection() {
-        leftSection.shouldBe(Condition.visible);
+    @Step("Go to Dates Page")
+    public void goToDatesPage() {
+        heardService.click();
+        heardServiceItems.findBy(Condition.text("DATES")).click();
     }
 
 }

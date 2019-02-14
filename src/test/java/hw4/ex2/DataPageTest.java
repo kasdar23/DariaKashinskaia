@@ -19,7 +19,7 @@ public class DataPageTest extends SelenideBase {
 
     @BeforeClass
     public void beforeClass() {
-        open("https://epam.github.io/JDI/index.html");
+        open(HOME_PAGE_LINK.link);
     }
 
     @BeforeMethod
@@ -41,34 +41,34 @@ public class DataPageTest extends SelenideBase {
         homePageSelenide.login(PITER_CHAILOVSKII);
 
         //4. Open through the header menu Service -> Dates Page
-        dataPage.goToDatesPage();
+        homePageSelenide.goToDatesPage();
 
         //5. Using drag-and-drop set Range sliders.
         // left sliders - the most left position, right slider - the most rigth position
         dataPage.moveSliders(0, 100);
 
         //6. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        dataPage.checkLog(0,100);
+        dataPage.checkLog(0, 100);
 
         //7. Using drag-and-drop set Range sliders. left sliders - the most left position,
         // right slider - the most left position.
         dataPage.moveSliders(0, 0);
 
         //8. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        dataPage.checkLog(0,0);
+        dataPage.checkLog(0, 0);
 
         //9. Using drag-and-drop set Range sliders. left sliders - the most rigth position,
         // right slider - the most rigth position.
         dataPage.moveSliders(100, 100);
 
         //10. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        dataPage.checkLog(100,100);
+        dataPage.checkLog(100, 100);
 
         //11. Using drag-and-drop set Range sliders. left sliders - the most rigth position,
         //right slider - the most rigth position.
         dataPage.moveSliders(30, 70);
 
         //12. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        dataPage.checkLog(30,70);
+        dataPage.checkLog(30, 70);
     }
 }
