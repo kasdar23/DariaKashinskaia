@@ -56,17 +56,17 @@ public class HomePageSelenide {
     @FindBy(css = ".sidebar-menu")
     private SelenideElement leftSection;
 
-    @Step("Open test site by URL")
+    @Step("Open test site {links.link}")
     public void openPage(Links links) {
         open(links.link);
     }
 
-    @Step("Assert Browser title")
+    @Step("Assert Browser title {expectedTitle.title}")
     public void checkBrowserTitle(Titles expectedTitle) {
         assertEquals(getWebDriver().getTitle(), expectedTitle.title);
     }
 
-    @Step("Login")
+    @Step("Login: login {user.login}; password {user.password}; user {user.userName}")
     public void login(DataUsers user) {
         profileButton.click();
         login.sendKeys(user.login);

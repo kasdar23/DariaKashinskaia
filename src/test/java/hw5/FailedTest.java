@@ -44,7 +44,7 @@ public class FailedTest extends SelenideBase {
 
     @Test
     @Story("Test Different Elements Page")
-    public void servicePageTest() {
+    public void differentElementsPageTest() {
 
         // 1. Open test site by URL
         homePageSelenide.openPage(HOME_PAGE_LINK);

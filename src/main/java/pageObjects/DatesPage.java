@@ -23,7 +23,7 @@ public class DatesPage {
     @FindBy(css = ".ui-slider-handle")
     private ElementsCollection slider;
 
-    @Step("Move slider")
+    @Step("Move slider from {fromValue} to {toValue}")
     public void moveSliders(int fromValue, int toValue) {
         double sliderTrackLength = sliderTrack.getSize().getWidth();
         setSliderPosition(fromValue, sliderTrackLength, slider.get(0));
@@ -37,7 +37,7 @@ public class DatesPage {
                 .release().build().perform();
     }
 
-    @Step("Chek log")
+    @Step("Chek log from {from} to {to}")
     public void checkLog(Integer from, Integer to) {
         logRows.get(1).shouldHave(Condition.text(from.toString()));
         logRows.get(0).shouldHave(Condition.text(to.toString()));

@@ -65,7 +65,7 @@ public class DifferentElementsPage {
         rightSection.shouldBe(Condition.visible);
     }
 
-    @Step("Select Nature Elements")
+    @Step("Select {natureElement.title}")
     public void selectNatureElement(NatureElements natureElement) {
         for (SelenideElement item : natureElements.exclude(Condition.attribute("checked"))) {
             if (item.parent().text().equalsIgnoreCase(natureElement.title)) {
@@ -74,7 +74,7 @@ public class DifferentElementsPage {
         }
     }
 
-    @Step("Unselect Nature Elements")
+    @Step("Unselect {chekBoxTitle.title}")
     public void unselectNatureElement(NatureElements chekBoxTitle) {
         // TODO Take a look on IDEA warning
         for (SelenideElement item : natureElements.filter(Condition.attribute("checked"))) {
@@ -84,7 +84,7 @@ public class DifferentElementsPage {
         }
     }
 
-    @Step("Check Nature Elements log")
+    @Step("Check log: element - {titles.title}, status - {expectedStatus}")
     public void checkLogElements(NatureElements titles, boolean expectedStatus) {
         for (SelenideElement item : logRows) {
             item.shouldBe(Condition.visible);
@@ -94,19 +94,19 @@ public class DifferentElementsPage {
                 .shouldHave(Condition.text("condition changed to " + expectedStatus));
     }
 
-    @Step("Choose material")
+    @Step("Choose {materials}")
     public void selectMaterials(ColorsAndMaterials materials) {
         // TODO material.find(Condition.text(materials.title)).click();
         material.find(Condition.text(materials.title)).click();
     }
 
-    @Step("Choose color")
+    @Step("Choose {dropDownTitle}")
     public void selectColor(ColorsAndMaterials dropDownTitle) {
         // TODO dropDownItems.find(Condition.text(dropDownTitle.title)).click();
         dropDownItems.find(Condition.text(dropDownTitle.title)).click();
     }
 
-    @Step("Check colors and materials log")
+    @Step("Check log for {titles.title}")
     public void checkLog(ColorsAndMaterials titles) {
         logRows.findBy(Condition.text(titles.title)).shouldHave(Condition.text("value changed to "));
     }
