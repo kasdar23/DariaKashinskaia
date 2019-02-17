@@ -32,7 +32,7 @@ public class HomePage {
     private WebElement userName;
 
     // TODO This locator can be improved
-    @FindBy(css = "ul.uui-navigation.nav.navbar-nav.m-l8 > li > a")
+    @FindBy(css = ".m-l8 > li > a")
     private List<WebElement> headerSection;
 
     @FindBy(css = "div.benefit-icon > span")
