@@ -92,6 +92,12 @@ public class HomePageSelenide {
         leftServiceItems.excludeWith(Condition.empty).shouldHave(CollectionCondition.texts(expectedText));
     }
 
+    @Step("Go to Different Elements Page")
+    public void goToDifferentElementsPage() {
+        heardService.click();
+        heardServiceItems.findBy(Condition.text("DIFFERENT ELEMENTS")).click();
+    }
+
     @Step("Go to Dates Page")
     public void goToDatesPage() {
         heardService.click();

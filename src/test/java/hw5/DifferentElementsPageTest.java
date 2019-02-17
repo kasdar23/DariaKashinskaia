@@ -35,7 +35,6 @@ public class DifferentElementsPageTest extends SelenideBase {
         open(HOME_PAGE_LINK.link);
     }
 
-
     @BeforeMethod
     public void beforeMethod() {
         differentElementsPage = page(DifferentElementsPage.class);
@@ -63,7 +62,7 @@ public class DifferentElementsPageTest extends SelenideBase {
         homePageSelenide.checkLeftServise(ServiseItems.getServiseItems());
 
         //6. Open through the header menu Service -> Different Elements Page
-        differentElementsPage.goToDifferentElementsPage();
+        homePageSelenide.goToDifferentElementsPage();
 
         //7. Check interface on Different elements page, it contains all needed elements
         differentElementsPage.checkInterface();

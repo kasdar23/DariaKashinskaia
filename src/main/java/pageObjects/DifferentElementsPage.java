@@ -10,11 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import com.codeborne.selenide.Condition;
 
 public class DifferentElementsPage {
-    @FindBy(css = ".m-l8 .dropdown-toggle")
-    private SelenideElement heardService;
-
-    @FindBy(css = ".m-l8 .dropdown-menu [href = 'different-elements.html']")
-    private SelenideElement differentElements;
 
     @FindBy(css = ".label-checkbox > input")
     private ElementsCollection natureElements;
@@ -36,12 +31,6 @@ public class DifferentElementsPage {
 
     @FindBy(css = ".panel-body-list.logs > li")
     private ElementsCollection logRows;
-
-    @Step("Go to Different Elements Page")
-    public void goToDifferentElementsPage() {
-        heardService.click();
-        differentElements.click();
-    }
 
     @Step("Check interface")
     public void checkInterface() {
