@@ -8,13 +8,16 @@ import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import entities.SuperHero;
 import enums.Titles;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -42,6 +45,9 @@ public class UserTablePageCucumber {
 
     @FindBy(css = ".panel-body-list.logs > li")
     public ElementsCollection logs;
+
+    @FindBy(css = "#user-table tr")
+    ElementsCollection table;
 
     @Step("Assert Browser title {expectedTitle.title}")
     @Then("(.+) page is opened")
@@ -90,18 +96,16 @@ public class UserTablePageCucumber {
     }
 
     @And("^User table contains following values:$")
-    public void userTableContainsFollowingValues(DataTable users) {
-        List<List<String>> data = users.raw();
-        List<String> usersNames = new ArrayList();
-        List<String> superHeroes = new ArrayList<>();
-        for (List<String> item : data) {
-            usersNames.add(item.get(1));
-        }
-        for (List<String> item : data) {
-            superHeroes.add(item.get(2));
-        }
-        userNames.shouldHave(CollectionCondition.texts(usersNames));
-        imagesText.shouldHave(CollectionCondition.texts(superHeroes));
+    public void userTableContainsFollowingValues(List<SuperHero> superHeroes) {
+        Assert.assertEquals(getSuperHeroes(), superHeroes);
+    }
+
+    private List<SuperHero> getSuperHeroes() {
+        return table.stream().skip(1).map(e -> new SuperHero(
+                Integer.parseInt(e.$("td", 0).text()),
+                e.$("td a").text(),
+                e.$("td span").text().replaceAll("\n", " ")
+        )).collect(Collectors.toList());
     }
 
     @Step("Select vip {userName}")
@@ -119,6 +123,7 @@ public class UserTablePageCucumber {
     }
 
     private int index = 0;
+
     @When("^I click on dropdown in column Type for user (.+)$")
     public void selectDropdown(String name) {
         index = userNames.indexOf(userNames.find(Condition.text(name)));
@@ -128,7 +133,7 @@ public class UserTablePageCucumber {
     @Then("^droplist contains values$")
     public void checkProfessionItems(List<String> expectedText) {
         ElementsCollection professionItems = professions.get(index).findAll(By.cssSelector("option"));
-        for (SelenideElement item:professionItems) {
+        for (SelenideElement item : professionItems) {
             item.shouldBe(Condition.visible);
         }
         professionItems.shouldHave(CollectionCondition.texts(expectedText));

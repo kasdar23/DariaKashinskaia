@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.open;
 import static enums.Links.HOME_PAGE_LINK;
 
-@CucumberOptions(features = "src/test/java/hw6", glue = "pageObjects")
+@CucumberOptions(features = "src/test/resources/hw6", glue = "pageObjects")
 public class CucumberPageRunner extends AbstractTestNGCucumberTests {
 
     @BeforeMethod
