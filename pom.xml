@@ -85,16 +85,16 @@
         </dependency>
 
         <dependency>
-            <groupId>com.epam.jdi</groupId>
-            <artifactId>jdi-light-html</artifactId>
-            <version>LATEST</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.6</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.jdi</groupId>
+            <artifactId>jdi-light-html</artifactId>
+            <version>LATEST</version>
         </dependency>
 
     </dependencies>
@@ -154,5 +154,6 @@
             </plugin>
         </plugins>
     </reporting>
+
 
 </project>
