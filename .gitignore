@@ -1,6 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
+.idea
 *.iml
 target
+vcs.xml
 # TODO Pay attention, IDEA specific files inside your repo...
 
 
