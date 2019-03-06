@@ -45,8 +45,7 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
     @FindBy(css = "[id ='submit-button']")
     private Button submitButton;
 
-    public void fill(MetalsColorsData data)
-    {
+    public void fill(MetalsColorsData data) {
         selectAndCount(data.oddNumber, data.evenNumber);
         selectElement(data.elements);
         selectColor(data.color);
@@ -55,6 +54,7 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
         submitForm();
     }
 
+    // TODO In according to test script, you should not calculate anything.
     private void selectAndCount(String oddNumber, String evenNumber) {
         numbers.select(oddNumber);
         numbers.select(evenNumber);
@@ -62,13 +62,13 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
     }
 
     private void selectElement(List<String> elementsList) {
-        for (String item :
-                elementsList) {
+        for (String item : elementsList) {
             elements.select(item);
         }
 
     }
 
+    // TODO What is the reason of this methods ??
     private void selectColor(String item) {
         colors.select(item);
     }
@@ -77,14 +77,16 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
         metals.select(item);
     }
 
+    private void submitForm() {
+        submitButton.click();
+    }
+    // !TODO
+
     private void selectVegetable(List<String> vegetablesList) {
         vegetables.select(vegetables.getSelected());
-        for (String item: vegetablesList) {
+        for (String item : vegetablesList) {
             vegetables.select(item);
         }
     }
 
-    private void submitForm() {
-        submitButton.click();
-    }
 }

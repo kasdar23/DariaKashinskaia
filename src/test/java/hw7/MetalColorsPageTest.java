@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static enums.ColorsAndMaterials.RED;
@@ -34,14 +35,14 @@ public class MetalColorsPageTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        List<String> elementsList = new ArrayList<>();
+        // TODO Basically, this should not be here. You can create special class in order to store data,
+        // TODO or use the similar way as User class.
+        // TODO Anyway, take a look on Arrays class !
         List<String> vegetableList = new ArrayList<>();
-        elementsList.add(WATER.title);
-        elementsList.add(FIRE.title);
         vegetableList.add(CUCUMBER.title);
         vegetableList.add(TOMATO.title);
         data = new MetalsColorsData("3", "8",
-                elementsList,
+                Arrays.asList(WATER.title, FIRE.title),
                 RED.title,
                 SELEN.title,
                 vegetableList);
@@ -52,6 +53,7 @@ public class MetalColorsPageTest {
         homePage.open();
         homePage.login(PITER_CHAILOVSKII);
         homePage.goTo(METALS_COLORS);
+        // TODO This is completely prohibited to mix up action and verification steps !
         metalsColorsPage.fillMetalsColorsForm(data, RESULT);
     }
 
