@@ -9,6 +9,7 @@ import jdi.forms.MetalsColorsForm;
 
 public class MetalsColorsPage extends WebPage {
 
+    // TODO Is this constructor really essential ?
     public MetalsColorsPage() {
     }
 
@@ -21,6 +22,8 @@ public class MetalsColorsPage extends WebPage {
                                      Data expectResult)
     {
         metalsColorsForm.fill(data);
+        // TODO Really ? Where did you find this approach ??
+        // TODO You should use JDI/TestNg assertions...
         assert (result.getText().equals(expectResult.item));
     }
 }

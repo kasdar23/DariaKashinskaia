@@ -2,17 +2,10 @@ package entities;
 
 import java.util.List;
 
+// TODO Maybe Lombok ?
 public class MetalsColorsData {
 
-    public MetalsColorsData(String oddNumber, String evenNumber, List<String> elements, String color, String metal, List<String> vegetables) {
-        this.oddNumber = oddNumber;
-        this.evenNumber = evenNumber;
-        this.elements = elements;
-        this.color = color;
-        this.metal = metal;
-        this.vegetables = vegetables;
-    }
-
+    // TODO Basically, this field should not be a String.
     public String oddNumber;
 
     public String evenNumber;
@@ -24,6 +17,16 @@ public class MetalsColorsData {
     public String metal;
 
     public List<String> vegetables;
+
+    // TODO Java code convention, line length
+    public MetalsColorsData(String oddNumber, String evenNumber, List<String> elements, String color, String metal, List<String> vegetables) {
+        this.oddNumber = oddNumber;
+        this.evenNumber = evenNumber;
+        this.elements = elements;
+        this.color = color;
+        this.metal = metal;
+        this.vegetables = vegetables;
+    }
 
     public void setOddNumber(String oddNumber) {
         this.oddNumber = oddNumber;
