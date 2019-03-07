@@ -3,6 +3,7 @@
 *.iml
 target
 vcs.xml
+.allure
 # TODO Allure ??
 
 

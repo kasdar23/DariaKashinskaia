@@ -26,7 +26,6 @@ public class HomePage extends WebPage {
     public void login(DataUsers user) {
         loginIcon.click();
         loginForm.login(user);
-        assert (userName.getText().equalsIgnoreCase(user.userName));
     }
 
     public void goTo(HeadSectionItems item) {

@@ -1,14 +1,35 @@
 package entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import java.util.Arrays;
 import java.util.List;
 
+import static enums.ColorsAndMaterials.RED;
+import static enums.ColorsAndMaterials.SELEN;
+import static enums.NatureElements.FIRE;
+import static enums.NatureElements.WATER;
+import static enums.Vegetables.CUCUMBER;
+import static enums.Vegetables.TOMATO;
+
 // TODO Maybe Lombok ?
+@Data
+@AllArgsConstructor
 public class MetalsColorsData {
 
     // TODO Basically, this field should not be a String.
-    public String oddNumber;
 
-    public String evenNumber;
+    public static MetalsColorsData DATA = new MetalsColorsData(
+            Arrays.asList(3, 8),
+            Arrays.asList(WATER.title, FIRE.title),
+            RED.title,
+            SELEN.title,
+            Arrays.asList(CUCUMBER.title, TOMATO.title));
+
+    public static String RESULT = DATA.generateLog();
+
+    public List<Integer> numbers;
 
     public List<String> elements;
 
@@ -19,36 +40,24 @@ public class MetalsColorsData {
     public List<String> vegetables;
 
     // TODO Java code convention, line length
-    public MetalsColorsData(String oddNumber, String evenNumber, List<String> elements, String color, String metal, List<String> vegetables) {
-        this.oddNumber = oddNumber;
-        this.evenNumber = evenNumber;
-        this.elements = elements;
-        this.color = color;
-        this.metal = metal;
-        this.vegetables = vegetables;
-    }
 
-    public void setOddNumber(String oddNumber) {
-        this.oddNumber = oddNumber;
-    }
-
-    public void setEvenNumber(String evenNumber) {
-        this.evenNumber = evenNumber;
-    }
-
-    public void setElements(List<String> elements) {
-        this.elements = elements;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public void setMetals(String metal) {
-        this.metal = metal;
-    }
-
-    public void setVegetables(List<String> vegetables) {
-        this.vegetables = vegetables;
+    public String generateLog() {
+        Integer summary = numbers.get(0)+numbers.get(1);
+        StringBuilder resultBuild = new StringBuilder();
+        resultBuild.append("Summary: ")
+                .append(summary.toString())
+                .append("\n" + "Elements: ");
+        for (String item : elements) {
+            resultBuild.append(item).append(", ");
+        }
+        resultBuild.delete(resultBuild.length() - 2, resultBuild.length())
+                .append("\n" + "Color: " + color + "\n" + "Metal: "
+                        + metal + "\n" + "Vegetables: ");
+        for (String item : vegetables) {
+            resultBuild.append(item).append(", ");
+        }
+        resultBuild.delete(resultBuild.length() - 2, resultBuild.length());
+        String result = resultBuild.toString();
+        return result;
     }
 }
