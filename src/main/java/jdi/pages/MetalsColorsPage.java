@@ -9,8 +9,6 @@ import org.testng.Assert;
 
 public class MetalsColorsPage extends WebPage {
 
-    // TODO Is this constructor really essential ?
-
     MetalsColorsForm metalsColorsForm;
 
     @FindBy(css = ".results")
@@ -21,8 +19,6 @@ public class MetalsColorsPage extends WebPage {
     }
 
     public void checkLog(String expectResult) {
-        // TODO Really ? Where did you find this approach ??
-        // TODO You should use JDI/TestNg assertions...
         Assert.assertEquals(result.getText(), expectResult);
     }
 

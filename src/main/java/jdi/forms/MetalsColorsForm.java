@@ -55,16 +55,11 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
     }
 
 
-    // TODO In according to test script, you should not calculate anything.
-
     private void selectElement(List<String> elementsList) {
         for (String item : elementsList) {
             elements.select(item);
         }
     }
-
-    // TODO What is the reason of this methods ??
-    // !TODO
 
     private void selectVegetable(List<String> vegetablesList) {
         vegetables.select(vegetables.getSelected());
