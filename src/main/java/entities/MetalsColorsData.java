@@ -13,12 +13,9 @@ import static enums.NatureElements.WATER;
 import static enums.Vegetables.CUCUMBER;
 import static enums.Vegetables.TOMATO;
 
-// TODO Maybe Lombok ?
 @Data
 @AllArgsConstructor
 public class MetalsColorsData {
-
-    // TODO Basically, this field should not be a String.
 
     public static MetalsColorsData DATA = new MetalsColorsData(
             Arrays.asList(3, 8),
@@ -39,10 +36,10 @@ public class MetalsColorsData {
 
     public List<String> vegetables;
 
-    // TODO Java code convention, line length
-
     public String generateLog() {
-        Integer summary = numbers.get(0)+numbers.get(1);
+        // TODO Okay, let it be, but in general is is not make sense to use StringBuffer here
+        // TODO Take a look on Strings::join or stream Collectors::join
+        Integer summary = numbers.get(0) + numbers.get(1);
         StringBuilder resultBuild = new StringBuilder();
         resultBuild.append("Summary: ")
                 .append(summary.toString())
