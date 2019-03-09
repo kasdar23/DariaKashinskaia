@@ -31,7 +31,7 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
             value = ".dropdown-toggle",
             list = "li",
             expand = ".caret")
-    public Droplist vegetables;
+    private Droplist vegetables;
 
     @JDropdown(
             root = "#metals",
@@ -45,11 +45,11 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
 
     @Override
     public void submit(MetalsColorsData data) {
-        numbers.select(data.numbers.get(0).toString());
-        numbers.select(data.numbers.get(1).toString());
+        numbers.select(data.summary.get(0).toString());
+        numbers.select(data.summary.get(1).toString());
         selectElement(data.elements);
         colors.select(data.color);
-        metals.select(data.metal);
+        metals.select(data.metals);
         selectVegetable(data.vegetables);
         submitButton.click();
     }
